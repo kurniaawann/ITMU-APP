@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_itmu/framework/core/style/app_colors.dart';
 
 class BottomNavigaion extends StatelessWidget {
   const BottomNavigaion({super.key, required this.navigationShell});
@@ -15,7 +14,6 @@ class BottomNavigaion extends StatelessWidget {
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.primaryColor,
         currentIndex: navigationShell.currentIndex,
         onTap: _onTap,
         items: [

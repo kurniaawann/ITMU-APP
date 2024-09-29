@@ -67,7 +67,7 @@ showSnackBar(BuildContext context, String message) {
     backgroundColor: AppColors.redColor,
     title: "Terjadi Kesalahan",
     message: message,
-    duration: const Duration(seconds: 1),
+    duration: const Duration(seconds: 2),
     icon: const Icon(Icons.warning, size: 28.0, color: AppColors.whiteColor),
     leftBarIndicatorColor: AppColors.redColor,
     flushbarPosition: FlushbarPosition.TOP,

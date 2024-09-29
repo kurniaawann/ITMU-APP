@@ -80,13 +80,30 @@ class _LoginBodyState extends State<LoginBody> {
               isPassword: true,
             ),
             const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Lupa Password',
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 20),
             BlocConsumer<LoginBloc, LoginState>(
               listener: (context, state) {
                 printError(state);
                 if (state is LoginSuccessState) {
                   // context.pushNamed(Routes.home);
-                } else if (state is LoginFailure) {
-                  showSnackBar(context, state.message);
+                } else if (state is LoginFailureState) {
+                  printError(state.message);
+                  showSnackBar(
+                    context,
+                    state.message,
+                  );
                 }
               },
               builder: (context, state) {

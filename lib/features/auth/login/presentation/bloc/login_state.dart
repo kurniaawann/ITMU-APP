@@ -13,7 +13,7 @@ class LoginLoadingState extends LoginState {}
 
 class LoginSuccessState extends LoginState {}
 
-class LoginFailure extends LoginState {
+class LoginFailureState extends LoginState {
   final String message;
-  const LoginFailure({required this.message});
+  const LoginFailureState({required this.message});
 }

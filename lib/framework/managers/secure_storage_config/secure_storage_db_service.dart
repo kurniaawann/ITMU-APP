@@ -1,4 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:mobile_itmu/framework/core/config/env_config.dart';
 import 'package:mobile_itmu/framework/core/logger/config_logger.dart';
 
 class SecureStorageDbService {
@@ -6,7 +7,7 @@ class SecureStorageDbService {
 
   Future<void> writeData(String value) async {
     try {
-      await _secureStorage.write(key: 'refreshToken', value: value);
+      await _secureStorage.write(key: EnvConfig.keyToken, value: value);
     } catch (e) {
       logger().e("error write Data", e);
     }
@@ -31,7 +32,7 @@ class SecureStorageDbService {
 
   Future<bool> checkUserLoggedIn() async {
     final storageService = SecureStorageDbService();
-    String? token = await storageService.readData('refreshToken');
+    String? token = await storageService.readData(EnvConfig.keyToken);
     return token != null && token.isNotEmpty;
   }
 }

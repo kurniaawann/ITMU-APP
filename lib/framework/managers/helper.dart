@@ -58,20 +58,19 @@ String mapFailureToMessage(Failure failure) {
   }
 }
 
-Flushbar? _activeFlushbar;
 showSnackBar(BuildContext context, String message) {
-  _activeFlushbar?.dismiss(null);
-  _activeFlushbar = Flushbar(
+  Flushbar(
+    isDismissible: false,
     margin: const EdgeInsets.only(bottom: 60, left: 25, right: 25),
     borderRadius: BorderRadius.circular(5),
     backgroundColor: AppColors.redColor,
-    title: "Terjadi Kesalahan",
+    // title: title,
     message: message,
     duration: const Duration(seconds: 2),
     icon: const Icon(Icons.warning, size: 28.0, color: AppColors.whiteColor),
     leftBarIndicatorColor: AppColors.redColor,
     flushbarPosition: FlushbarPosition.TOP,
-  )..show(context);
+  ).show(context);
 }
 
 void printWarning(dynamic text) {

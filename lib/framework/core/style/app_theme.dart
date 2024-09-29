@@ -31,15 +31,15 @@ class AppTheme {
         backgroundColor: AppColors.whiteColor,
         surfaceTintColor: AppColors.whiteColor,
       ),
-      // elevatedButtonTheme: ElevatedButtonThemeData(
-      //   style: ElevatedButton.styleFrom(
-      //     shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.circular(8),
-      //     ),
-      //     backgroundColor: AppColors.primaryColor,
-      //     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-      //   ),
-      // ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          backgroundColor: AppColors.primaryColor,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+        ),
+      ),
     );
     return _buildTheme(base);
   }
@@ -78,13 +78,12 @@ class AppTheme {
     final textTheme = base.textTheme;
     return GoogleFonts.interTextTheme(textTheme)
         .copyWith(
+          titleLarge: textTheme.titleLarge
+              ?.copyWith(fontSize: 20, fontWeight: FontWeight.w700),
           headlineMedium: textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.w800,
           ),
           headlineSmall: textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
-          titleLarge: textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w700,
           ),
         )

@@ -16,7 +16,8 @@ class ItindoTextField extends StatefulWidget {
       TextInputType? keyboardType,
       this.maxLength,
       this.contentPaddingVertikal,
-      this.labelText})
+      this.labelText,
+      this.formKey})
       : keyboardType = keyboardType ?? (TextInputType.text),
         assert(maxLength == null ||
             maxLength == TextField.noMaxLength ||
@@ -33,6 +34,7 @@ class ItindoTextField extends StatefulWidget {
   final int? maxLength;
   final Widget? prefixIcon;
   final double? contentPaddingVertikal;
+  final GlobalKey<FormState>? formKey;
 
   @override
   State<ItindoTextField> createState() => _CustomTextFormFieldState();
@@ -42,7 +44,6 @@ class _CustomTextFormFieldState extends State<ItindoTextField> {
   late final TextEditingController controller;
 
   late bool obsecureText;
-  late bool isError;
 
   @override
   void initState() {
@@ -62,53 +63,71 @@ class _CustomTextFormFieldState extends State<ItindoTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      cursorRadius: const Radius.circular(16),
-      cursorColor: Colors.grey,
-      obscureText: obsecureText,
-      controller: controller,
-      validator: widget.validator,
-      onChanged: widget.onChanged,
-      inputFormatters: widget.inputFormatters,
-      // onTap: widget.onTap,
-      keyboardType: widget.keyboardType,
-      maxLength: widget.maxLength,
-      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w500,
-          fontSize: 13,
-          color: AppColors.blackColor),
-      decoration: InputDecoration(
-        label: Text(
-          widget.labelText ?? '-',
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-        prefixIcon: widget.prefixIcon,
-        hintText: widget.hintText,
-        hintStyle: Theme.of(context)
-            .textTheme
-            .labelMedium
-            ?.copyWith(color: AppColors.blackColor),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        suffixIconColor: AppColors.primaryColor,
-        suffixIcon: widget.suffixIcon ??
-            (widget.isPassword
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        obsecureText = !obsecureText;
-                      });
-                    },
-                    icon: Icon(
-                        obsecureText ? Icons.visibility_off : Icons.visibility,
-                        color: AppColors.blackColor),
-                  )
-                : null),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+    return Form(
+      key: widget.formKey,
+      child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        cursorRadius: const Radius.circular(16),
+        cursorColor: Colors.grey,
+        obscureText: obsecureText,
+        controller: controller,
+        validator: widget.validator,
+        onChanged: widget.onChanged,
+        inputFormatters: widget.inputFormatters,
+        // onTap: widget.onTap,
+        keyboardType: widget.keyboardType,
+        maxLength: widget.maxLength,
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w500,
+            fontSize: 13,
+            color: AppColors.blackColor),
+        decoration: InputDecoration(
+          label: Text(
+            widget.labelText ?? '-',
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          prefixIcon: widget.prefixIcon,
+          hintText: widget.hintText,
+          hintStyle: Theme.of(context)
+              .textTheme
+              .labelMedium
+              ?.copyWith(color: AppColors.blackColor),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+          suffixIconColor: AppColors.primaryColor,
+          suffixIcon: widget.suffixIcon ??
+              (widget.isPassword
+                  ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obsecureText = !obsecureText;
+                        });
+                      },
+                      icon: Icon(
+                          obsecureText
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: AppColors.blackColor),
+                    )
+                  : null),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          errorStyle: const TextStyle(
+            fontSize: 14,
+            height: 1.2,
+            color: AppColors.redColor,
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
     );

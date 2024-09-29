@@ -2,6 +2,8 @@
 
 class StringResources {
   StringResources._();
+  //!APP NAME
+  static const String APP_NAME = 'ITMU';
 
   //! Error Message
   static const String SERVER_FAILURE_MESSAGE = 'Server Failure';
@@ -20,4 +22,7 @@ class StringResources {
   static const String NOT_FOUND_MESSAGE = 'Url tidak ditemukan';
   static const String FETCH_DATA_FAILURE_MESSAGE =
       'Terdapat kesalahan dalam proses';
+
+  //!LOGIN
+  static const String WELCOME = 'Selamat Datang';
 }

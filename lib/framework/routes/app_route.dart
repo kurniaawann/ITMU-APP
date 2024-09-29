@@ -6,4 +6,5 @@ abstract class Routes {
   static const service = 'service';
   static const history = 'history';
   static const account = 'account';
+  static const login = 'login';
 }

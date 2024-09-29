@@ -1,8 +1,11 @@
 import 'dart:developer';
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:mobile_itmu/framework/core/config/string_resource.dart';
 import 'package:mobile_itmu/framework/core/exceptions/failures.dart';
+import 'package:mobile_itmu/framework/core/style/app_colors.dart';
 
 String mapFailureToMessage(Failure failure) {
   switch (failure.runtimeType) {
@@ -53,6 +56,22 @@ String mapFailureToMessage(Failure failure) {
           ? failure.message
           : 'Unexpected error';
   }
+}
+
+Flushbar? _activeFlushbar;
+showSnackBar(BuildContext context, String message) {
+  _activeFlushbar?.dismiss(null);
+  _activeFlushbar = Flushbar(
+    margin: const EdgeInsets.only(bottom: 60, left: 25, right: 25),
+    borderRadius: BorderRadius.circular(5),
+    backgroundColor: AppColors.redColor,
+    title: "Terjadi Kesalahan",
+    message: message,
+    duration: const Duration(seconds: 1),
+    icon: const Icon(Icons.warning, size: 28.0, color: AppColors.whiteColor),
+    leftBarIndicatorColor: AppColors.redColor,
+    flushbarPosition: FlushbarPosition.TOP,
+  )..show(context);
 }
 
 void printWarning(dynamic text) {
